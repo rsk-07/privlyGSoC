@@ -11,7 +11,7 @@ env:
 
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
-  - RAILS_ENV=test bundle exec rake --trace phantomjs
+  - RAILS_ENV=test bundle exec rake --trace webdriver browser=firefox
 before_script:
   - cp config/database.travis.yml config/database.yml
   - mysql -e 'create database privly_test'

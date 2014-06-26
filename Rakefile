@@ -11,9 +11,9 @@ task :webdriver do
 	
 	# Detect which browser we want to run
 	case ENV['browser']
-	when 'chromium'
+	when 'chrome'
 		#TODO: detect chromium path? I use Linux, this is the path on my machine
-		Selenium::WebDriver::Chrome.path = '/usr/lib/chromium-browser/chromium-browser'
+#Selenium::WebDriver::Chrome.path = '/usr/bin/google-chrome'
 		driver = Selenium::WebDriver.for :chrome
 	when 'firefox'
 		driver = Selenium::WebDriver.for :firefox

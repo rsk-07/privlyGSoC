@@ -1,0 +1,10 @@
+en:
+  devise:
+    invitations:
+      send_instructions: 'Thanks %{email}! When we are ready for more users we will send you a message.'
+      invitation_token_invalid: 'The invitation token provided is not valid!'
+      updated: 'Your password was set successfully. You are now signed in.'
+      no_invitations_remaining: "No invitations remaining"
+    mailer:
+      invitation_instructions:
+        subject: 'Invitation instructions'

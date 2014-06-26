@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= Privly::Application.config.name %> &middot; <%= yield :title %></title>
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="icon" href="/favicon.ico" />
+    
+    <%= stylesheet_link_tag    :bs %>
+    <%= javascript_include_tag :bs %>
+
+    <%= yield :extrahead %>
+    <%= yield :extracss %>
+    <%= yield :extrajs %>
+
+    <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div id="site_name">
+             <a class="brand" href="/"><%= Privly::Application.config.name %></a>
+             <span>Share Priv(ate).ly</span>
+          </div>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <% if user_signed_in? %>
+                <li>
+                  <a href="/apps/Index/new.html">Privly Applications</a>
+                </li>
+                <li <% if controller.action_name == "account" %>class="active"<% end %>>
+                  <%= link_to "Account", pages_account_path %>
+                </li>
+                <li <% if controller.action_name == "privacy" %>class="active"<% end %>>
+                  <%= link_to "Trust Center", pages_privacy_path %>
+                </li>
+                <li>
+                  <%= link_to "Logout", 
+                  destroy_user_session_path, 
+                  :method => :delete %>
+                </li>
+              <% else %>
+                <li <% if controller.action_name == "privacy" %>class="active"<% end %>>
+                  <%= link_to "Trust Center", pages_privacy_path %>
+                </li>
+                <li <% if controller.controller_name == "invitations" %>class="active"<% end %>>
+                  <%= link_to "Sign Up", new_user_invitation_path %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+      
+      <% if notice %>
+      <div class="flash notice">
+          <p><%= notice %></p>
+      </div>
+      <% end %>
+      <% if alert %>
+      <div class="flash alert">
+          <p><%= alert %></p>
+      </div>
+      <% end %>
+      
+      <div class="content">
+        <%= yield %>
+      </div>
+      <hr>
+      <footer>
+        <div id="btmcontent">
+            <div id="downloadmessage">
+
+              <% if firefox_browser? %>
+                <div id="firefox_link" style="float: left; width: 33%;">
+                    <%= link_to("https://addons.mozilla.org/en-US/firefox/addon/privly/") do %>
+                      <div style="position:relative;width:10em;padding:1em;height:150px">
+                        <%= image_tag "firefox_logo_150.png", :alt => "Firefox Logo", :style=>"position:absolute;right:0;top:0;opacity:0.9;filter:alpha(opacity=90);" %>
+                        <%= image_tag "icons/icon_96.png", :alt => "Privly Icon", :style=>"position:absolute;right:27px;top:20px;" %>
+                      </div>         
+                    <% end %>
+                </div>
+              <% end %>
+
+              <% if opera_browser? %>
+                <div id="opera_link" style="float: left; width: 34%;">
+                  <%= link_to("https://addons.opera.com/en/extensions/details/privly-2/?display=en") do %>
+
+                    <div style="position:relative;width:10em;padding:1em;height:150px">
+                      <%= image_tag "opera_logo_150.png", :alt => "Google Chrome Logo", :style=>"position:absolute;right:0;top:0;opacity:0.9;filter:alpha(opacity=90);background-color:rgba(255, 255, 255, 0.08);" %>
+                      <%= image_tag "icons/icon_96.png", :alt => "Privly Icon", :style=>"position:absolute;right:27px;top:20px;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if chrome_browser? %>
+                <div id="chrome_link" style="float: left; width: 33%;">
+                  <%= link_to("https://chrome.google.com/webstore/detail/pkokikcdapfpkkkjpdaamjanniaempol") do %>
+                    <div style="position:relative;width:10em;padding:1em;height:150px">
+                      <%= image_tag "chrome-logo_150X.png", :alt => "Google Chrome Logo", :style=>"position:absolute;right:0;top:0;opacity:0.9;filter:alpha(opacity=90);" %>
+                      <%= image_tag "icons/icon_96.png", :alt => "Privly Icon", :style=>"position:absolute;right:33px;top:15px;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <h2>Never View this Site Again</h2>
+              <p>Privly works by injecting status updates, emails, tweets... anything really... directly into pages you view everyday. We never want you to come back to this website again. <%= link_to "Download", "https://priv.ly/pages/download" %> the extension and you won't have to.</p>
+            </div><!-- downloadmessage -->
+        </div><!-- btmcontent -->
+      </footer>
+      
+    </div>
+    
+    <%= javascript_include_tag :bootstrap %>
+  </body>
+</html>

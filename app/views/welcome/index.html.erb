@@ -1,0 +1,27 @@
+<% content_for(:title) do %>
+    Welcome
+<% end %>
+
+<div class="page-header">
+  <h1>Welcome to <%= Privly::Application.config.name %></h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span7">
+    <p>
+      This server <strong>hosts content for</strong> the Privly family of <strong>privacy and security applications</strong>. Privly enables you to securely send and receive content through online services, without those services having access to the content. The Privly Project is a non-profit, foundation-owned concept being made by and for all internet users. For more information about Privly, go to <%= link_to "Priv.ly", "https://priv.ly" %>
+    </p>
+    <h2>Invitation Only</h2>
+    <p>
+      Hosting on this server is only for users invited by the site owners. You can request an account at the <%= link_to "invitation page", new_user_invitation_path %>, but invites are limited. If you don't want to wait for an invitation, we recommend you join the development effort.</p>
+  </div>
+  <div class="span1"></div>
+  <div class="span4">
+    <div id="side_block">
+    <%= link_to("https://priv.ly/pages/servers.html") do %>
+      <%= image_tag "logo_no_bleed.png", :alt => "Privly Logo", :class => "center" %>
+      <h2>Learn More</h2>
+    <%  end %>
+    </div>
+  </div>
+</div>

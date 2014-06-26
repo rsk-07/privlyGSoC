@@ -1,0 +1,15 @@
+.bundle
+db/*.sqlite3
+db/*.sqlite
+log/*.log
+tmp/
+.sass-cache/
+.DS_Store
+*~
+database.yml
+config/environments/development.rb
+config/environments/production.rb
+config/deploy.rb
+public/zero_bin
+doc/app/
+.idea

@@ -1,0 +1,10 @@
+### Install Chrome Webdriver ###
+
+#Download it from here:
+wget http://chromedriver.storage.googleapis.com/index.html?path=2.10/chromedriver_linux64.zip
+
+#Add to $PATH
+unzip chromedriver_linux64.zip
+mkdir -p $HOME/bin
+mv chromedriver $HOME/bin
+echo "export PATH=$PATH:$HOME/bin" >> $HOME/.bash_profile

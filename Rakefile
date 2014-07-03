@@ -24,7 +24,7 @@ task :webdriver do
 		caps.platform = "Windows XP"
 		# caps.version = "5"
 		# caps.platform = :LINUX
-		# driver = Selenium::WebDriver.for :firefox
+		#driver = Selenium::WebDriver.for :firefox
 		driver = Selenium::WebDriver.for(
 			:remote,
 			:url => "http://dreamrulez07:fb789f94-e013-4026-8cd9-27f0285e0147@ondemand.saucelabs.com:80/wd/hub",

@@ -13,20 +13,32 @@ task :webdriver do
 	case ENV['browser']
 	when 'chrome'
 		#TODO: detect chromium path? I use Linux, this is the path on my machine
-#Selenium::WebDriver::Chrome.path = '/usr/bin/google-chrome'
-		driver = Selenium::WebDriver.for :chrome
+		#Selenium::WebDriver::Chrome.path = '/usr/bin/google-chrome'
+		#driver = Selenium::WebDriver.for :chrome
+		driver = Selenium::WebDriver.for(
+			:remote,
+			:desired_capabilities => :chrome)
 	when 'firefox'
-		driver = Selenium::WebDriver.for :firefox
+		caps = Selenium::WebDriver::Remote::Capabilities.firefox
+		caps.version = "23"
+		caps.platform = "Windows XP"
+		# caps.version = "5"
+		# caps.platform = :LINUX
+		# driver = Selenium::WebDriver.for :firefox
+		driver = Selenium::WebDriver.for(
+			:remote,
+			:url => "http://dreamrulez07:fb789f94-e013-4026-8cd9-27f0285e0147@ondemand.saucelabs.com:80/wd/hub",
+			:desired_capabilities => caps)
 	else
 		raise ArgumentError, 'Unknown browser requested'
 	end
 	
 	test_pages = ["http://localhost:3000/apps/Help/new.html",
-	"http://localhost:3000/apps/Login/new.html",
-	"http://localhost:3000/apps/Index/new.html",
-	"http://localhost:3000/apps/PlainPost/new.html",
+#	"http://localhost:3000/apps/Login/new.html",
+#	"http://localhost:3000/apps/Index/new.html",
+#	"http://localhost:3000/apps/PlainPost/new.html",
 #	"http://localhost:3000/apps/PlainPost/show.html",
-	"http://localhost:3000/apps/ZeroBin/new.html",
+#	"http://localhost:3000/apps/ZeroBin/new.html",
 #	"http://localhost:3000/apps/ZeroBin/show.html"
 	]
 

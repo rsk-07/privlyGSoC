@@ -1,3 +1,8 @@
+addons:
+  sauce_connect:
+    username: "dreamrulez07"
+    access_key: "fb789f94-e013-4026-8cd9-27f0285e0147"
+
 before_install:
   - git submodule update --init --recursive
 

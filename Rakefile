@@ -43,15 +43,23 @@ task :webdriver do
 	]
 
 	# Finally, we load the HTML pages with Webdriver
-	test_pages.each do |x|
-	  driver.navigate.to x
+#	test_pages.each do |x|
+#	  driver.navigate.to x
 	  # Allow it to load
-	  sleep 3
-	  status = driver.execute_script('return consoleReporter.status;')
-	  output = driver.execute_script('return consoleReporter.getLogsAsString();')
-	  print output
+#	  sleep 3
+#	  status = driver.execute_script('return consoleReporter.status;')
+#	  output = driver.execute_script('return consoleReporter.getLogsAsString();')
+#	  print output
 	  # Make sure to exit with code > 0 if there is a test failure
 	  #raise RuntimeError, 'Failure' unless status === 'success'
-	end
+#	end
+	driver.navigate.to "http://google.com"
+
+	element = driver.find_element(:name, 'q')
+	element.send_keys "Hello WebDriver!"
+	element.submit
+
+	puts driver.title
+
 	driver.quit
 end

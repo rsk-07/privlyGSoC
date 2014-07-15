@@ -7,7 +7,7 @@ gem 'jquery-rails'
 
 # Database gem
 gem 'mysql2' # Comment out this line to use another Database type
-# gem 'sqlite3'
+#gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -45,3 +45,6 @@ gem 'useragent'
 
 # Error reporting service
 gem "airbrake"
+
+# CIS testing
+gem "selenium-webdriver", "~>2.42.0"
